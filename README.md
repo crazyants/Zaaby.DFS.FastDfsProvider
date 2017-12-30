@@ -6,7 +6,7 @@
 
 ### Build Project
 
-Create a asp.net core project and add the register code in ConfigureServices method(Startup.cs).192.168.5.61 is the ip of FastDfsProvider.Mongo.Repository and 192.168.78.152 is of the FastDFS tracker.The repostory is not necessary
+Create an asp.net core project and add the register code in ConfigureServices method(Startup.cs).192.168.5.61 is the ip of FastDfsProvider.Mongo.Repository and 192.168.78.152 is of the FastDFS tracker.The repostory is not necessary
 
     //Register the FastDfsClient repostory
     services.AddSingleton<Zaaby.DFS.Core.IRepository, Zaaby.DFS.FastDfsProvider.Mongo.Repository>(p =>
