@@ -6,19 +6,25 @@
 
 ### Build Project
 
-Create an asp.net core project and add the register code in ConfigureServices method(Startup.cs).192.168.5.61 is the ip of FastDfsProvider.Mongo.Repository and 192.168.78.152 is of the FastDFS tracker.The repostory is not necessary
+Create an asp.net core project and import reference in startup.cs
 
-    //Register the FastDfsClient repostory
-    services.AddSingleton<Zaaby.DFS.Core.IRepository, Zaaby.DFS.FastDfsProvider.Mongo.Repository>(p =>
-        new Zaaby.DFS.FastDfsProvider.Mongo.Repository(
-            new Zaaby.DFS.FastDfsProvider.Mongo.MongoDbConfiger(new List<string> {"192.168.5.61:27017"},
-                "FlytOaData", "FlytOaDev", "2016")));
+    using Zaaby.DFS.Core;
+    using Zaaby.DFS.FastDfsProvider;
+    using Zaaby.DFS.FastDfsProvider.Mongo;
+
+Register FastDfsClient in ConfigureServices method,the ip 192.168.78.152 is tracker server.
 
     //Register the FastDfsClient
-    services.AddSingleton<Zaaby.DFS.Core.IHandler, Zaaby.DFS.FastDfsProvider.ZaabyFastDfsClient>(p =>
-        new Zaaby.DFS.FastDfsProvider.ZaabyFastDfsClient(
-            new List<IPEndPoint> {new IPEndPoint(IPAddress.Parse("192.168.78.152"), 22122)},
-            "group1", services.BuildServiceProvider().GetService<Zaaby.DFS.Core.IRepository>()));
+    services.AddSingleton<IHandler, ZaabyFastDfsClient>(p =>
+        new ZaabyFastDfsClient(new List<IPEndPoint> {new IPEndPoint(IPAddress.Parse("192.168.78.152"), 22122)},
+            "group1", services.BuildServiceProvider().GetService<IRepository>()));
+
+Register repository,the repository IS NOT NECCESSARY and you can implementing it what you like.
+
+    //Register the FastDfsClient repostory
+    services.AddSingleton<IRepository, Repository>(p =>
+        new Repository(new MongoDbConfiger(new List<string> {"192.168.5.61:27017"}, "FlytOaData", "FlytOaDev",
+            "2016")));
 
 Create a controller named DfsDemoController like this(add a gif file in the project named 3.gif) and run the web application
 

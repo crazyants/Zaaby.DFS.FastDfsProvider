@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Zaaby.DFS.Core;
+using Zaaby.DFS.FastDfsProvider;
+using Zaaby.DFS.FastDfsProvider.Mongo;
 
 namespace Demo
 {
@@ -19,17 +22,15 @@ namespace Demo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Register the FastDfsClient repostory
-            services.AddSingleton<Zaaby.DFS.Core.IRepository, Zaaby.DFS.FastDfsProvider.Mongo.Repository>(p =>
-                new Zaaby.DFS.FastDfsProvider.Mongo.Repository(
-                    new Zaaby.DFS.FastDfsProvider.Mongo.MongoDbConfiger(new List<string> {"192.168.5.61:27017"},
-                        "FlytOaData", "FlytOaDev", "2016")));
-
             //Register the FastDfsClient
-            services.AddSingleton<Zaaby.DFS.Core.IHandler, Zaaby.DFS.FastDfsProvider.ZaabyFastDfsClient>(p =>
-                new Zaaby.DFS.FastDfsProvider.ZaabyFastDfsClient(
-                    new List<IPEndPoint> {new IPEndPoint(IPAddress.Parse("192.168.78.152"), 22122)},
-                    "group1", services.BuildServiceProvider().GetService<Zaaby.DFS.Core.IRepository>()));
+            services.AddSingleton<IHandler, ZaabyFastDfsClient>(p =>
+                new ZaabyFastDfsClient(new List<IPEndPoint> {new IPEndPoint(IPAddress.Parse("192.168.78.152"), 22122)},
+                    "group1", services.BuildServiceProvider().GetService<IRepository>()));
+            
+            //Register the FastDfsClient repostory
+            services.AddSingleton<IRepository, Repository>(p =>
+                new Repository(new MongoDbConfiger(new List<string> {"192.168.5.61:27017"}, "FlytOaData", "FlytOaDev",
+                    "2016")));
 
             services.AddMvc();
         }
