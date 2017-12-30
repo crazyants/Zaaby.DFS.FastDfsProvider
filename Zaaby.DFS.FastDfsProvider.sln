@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaaby.DFS.FastDfsProvider",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{906725E5-30E1-4B84-AC8E-3F4B862FCC4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{8E25F5E9-8D6D-49E3-94D6-2B0DA0E01B71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{906725E5-30E1-4B84-AC8E-3F4B862FCC4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{906725E5-30E1-4B84-AC8E-3F4B862FCC4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{906725E5-30E1-4B84-AC8E-3F4B862FCC4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E25F5E9-8D6D-49E3-94D6-2B0DA0E01B71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E25F5E9-8D6D-49E3-94D6-2B0DA0E01B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E25F5E9-8D6D-49E3-94D6-2B0DA0E01B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E25F5E9-8D6D-49E3-94D6-2B0DA0E01B71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
