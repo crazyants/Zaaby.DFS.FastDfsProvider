@@ -19,7 +19,7 @@ Register FastDfsClient in ConfigureServices method,the ip 192.168.78.152 is trac
         new ZaabyFastDfsClient(new List<IPEndPoint> {new IPEndPoint(IPAddress.Parse("192.168.78.152"), 22122)},
             "group1", services.BuildServiceProvider().GetService<IRepository>()));
 
-Register repository,the repository IS NOT NECCESSARY and you can implementing it what you like.
+Register repository,the repository IS NOT NECCESSARY and you can implementing it what you like.In this example we use mongo,you can get it on Nuget or [here](https://github.com/Mutuduxf/Zaaby.DFS.FastDfsProvider.Mongo)
 
     //Register the FastDfsClient repostory
     services.AddSingleton<IRepository, Repository>(p =>
