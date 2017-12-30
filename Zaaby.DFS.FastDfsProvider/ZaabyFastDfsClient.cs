@@ -33,7 +33,7 @@ namespace Zaaby.DFS.FastDfsProvider
             var fileDfsInfo = new FileDfsInfo
             {
                 Id = Guid.NewGuid(),
-                DfsFileName = $"{_groupName}/{_fastDfsClient.UploadFile(storageNode, fileBytes, fileExt)}",
+                DfsFileName = _fastDfsClient.UploadFile(storageNode, fileBytes, fileExt),
                 FileName = fileName,
                 UtcCreateTime = DateTime.Now
             };

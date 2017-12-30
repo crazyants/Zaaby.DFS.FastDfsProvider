@@ -25,16 +25,16 @@ namespace Demo.Controllers
 
         [HttpGet]
         [HttpPost]
-        public void DownloadFile(string dfsfileName)
+        public FileResult DownloadFile(string dfsFileName)
         {
-            var downloadFile = _dfsHandler.DownloadFile(dfsfileName);
+            return File(_dfsHandler.DownloadFile(dfsFileName),"text/plain","test.gif");
         }
 
         [HttpGet]
         [HttpPost]
-        public void RemoveFile(string dfsfileName)
+        public void RemoveFile(string dfsFileName)
         {
-            _dfsHandler.RemoveFile(dfsfileName);
+            _dfsHandler.RemoveFile(dfsFileName);
         }
     }
 }
