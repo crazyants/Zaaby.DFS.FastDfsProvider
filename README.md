@@ -4,6 +4,8 @@
 
 ## QuickStart
 
+### NuGet
+
     Install-Package Zaaby.DFS.FastDfsProvider
 
 If you need a repository we have a mongo implementation.
