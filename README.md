@@ -4,6 +4,12 @@
 
 ## QuickStart
 
+    Install-Package Zaaby.DFS.FastDfsProvider
+
+If you need a repository we have a mongo implementation.
+
+    Install-Package Zaaby.DFS.FastDfsProvider.Mongo
+
 ### Build Project
 
 Create an asp.net core project and import reference in startup.cs
