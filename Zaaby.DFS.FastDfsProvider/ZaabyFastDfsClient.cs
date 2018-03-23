@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Text;
 using Zaabee.FastDfsClient;
 using Zaaby.DFS.Core;
 
@@ -22,10 +24,13 @@ namespace Zaaby.DFS.FastDfsProvider
         public string UploadFile(byte[] fileBytes, string fileName)
         {
             var strArr = fileName.Split('.');
-            if (strArr.Length != 2)
+            if (strArr.Length < 2)
                 throw new ArgumentException(nameof(fileName));
-            var file = strArr[0];
-            var fileExt = strArr[1];
+            var fileNameBuilder = new StringBuilder();
+            for (var i = 0; i < strArr.Length - 1; i++)
+                fileNameBuilder.Append(strArr[i]);
+            var file = fileNameBuilder.ToString();
+            var fileExt = strArr.Last();
             if (string.IsNullOrWhiteSpace(file) || string.IsNullOrWhiteSpace(fileExt))
                 throw new ArgumentException(nameof(fileName));
 
